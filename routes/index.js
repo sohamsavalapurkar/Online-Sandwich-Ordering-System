@@ -10,14 +10,40 @@ var accountDetails = db.get('accountDetails');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	res.render('main', {user: req.user});
+	if(req.user) {
+		console.log(req.user.username);
+		accountDetails.find({username: req.user.username}, function(err, userDetails) {
+			if (err) throw error;
+			console.log(userDetails[0].name);
+			res.render('main', {user: req.user, userDetails: userDetails[0]});
+		})
+	}
+	else {
+		res.render('main', {user: req.user});
+	}
+	
+	
 });
 
 router.get('/sandwiches', function(req, res) {
-	collection.find({}, function(err, sandwiches) {
-		if (err) throw err;
-		res.render('index', {results: sandwiches, user: req.user});
-	})
+	if(req.user) {
+		console.log(req.user.username);
+		accountDetails.find({username: req.user.username}, function(err, userDetails) {
+			if (err) throw error;
+			console.log(userDetails[0].name);
+			collection.find({}, function(err, sandwiches) {
+				if (err) throw err;
+				res.render('index', {results: sandwiches, user: req.user, userDetails: userDetails[0]});
+			})
+		})
+	}
+	else {
+		collection.find({}, function(err, sandwiches) {
+			if (err) throw err;
+			res.render('index', {results: sandwiches, user: req.user});
+		})
+	}
+	
 });
 
 router.get('/sandwiches/:id', function(req, res) {

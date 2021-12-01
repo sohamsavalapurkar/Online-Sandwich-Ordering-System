@@ -12,9 +12,22 @@
 					<li class="nav-item"><a class="nav-link " href="/sandwiches">Shop</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Franchise</a></li>
 				</ul>
-				<form class="d-flex">
-					<div class="text-center"><a class="btn btn-outline-light mt-auto" href="/logout">Logout</a></div>
-				</form>
+                <form class="d-flex">
+                    <button class="btn btn-outline-light" type="submit">
+                        <i class="bi-cart-fill me-1"></i>
+                        Cart
+                        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                    </button>
+                </form>
+				
+                <div class="btn-group">
+                    <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-person-fill"></i> <%= userDetails.name %>
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                    </ul>
+                  </div>
 				
 			</div>
 		</div>
