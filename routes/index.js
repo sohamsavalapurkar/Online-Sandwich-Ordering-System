@@ -47,10 +47,24 @@ router.get('/sandwiches', function(req, res) {
 });
 
 router.get('/sandwiches/:id', function(req, res) {
-	collection.findOne({_id : req.params.id}, function(err, sandwich) {
-		if (err) throw err;
-			res.render('item', {sandwich: sandwich});  
-		});
+	if(req.user) {
+		console.log(req.user.username);
+		accountDetails.find({username: req.user.username}, function(err, userDetails) {
+			if (err) throw error;
+			console.log(userDetails[0].name);
+			collection.findOne({_id : req.params.id}, function(err, sandwich) {
+				if (err) throw err;
+					res.render('item', {sandwich: sandwich, user:req.user, userDetails: userDetails[0]});  
+				});
+		})
+	}
+	else {
+		collection.findOne({_id : req.params.id}, function(err, sandwich) {
+			if (err) throw err;
+				res.render('item', {sandwich: sandwich, user:req.user});  
+			});
+	}
+	
 });
 
 router.get('/signup', function(req, res) {

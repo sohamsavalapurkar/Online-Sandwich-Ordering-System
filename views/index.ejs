@@ -60,13 +60,30 @@
 			<p class="lead fw-normal text-white-50 mb-0">Choose from our wide range of varieties</p>
 		</div>
 	</div>
+	<form class="row mt-2">
+		
+		<div class="col-md-9">
+			<input type="text" id="searchBar" name="title" onkeyup="keyUpFunc()" class="form-control" placeholder="title">
+		</div>
+		<div class="col-md-3">
+			<select name="flavor" id="flavor" class="form-control" onchange="changeFunc();">
+				<option value=""></option>
+				<option value="Chicken">Chicken</option>
+				<option value="Pork">Pork</option>
+				<option value="Turkey">Turkey</option>
+				<option value="Romantic">Romantic</option>
+				<option value="Drama">Drama</option>
+			</select>
+		</div>
+	</form>
 </header>
 <!-- Section-->
+
 <section class="py-5">
 	<div class="container px-4 px-lg-5 mt-5">
 		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 			<% results.forEach(function(sandwich){ %>
-				<div class="col mb-5">
+				<div class="col mb-5" id="<%= sandwich._id %>">
 					<div class="card h-100">
 						<!-- Product image-->
 						<img class="card-img-top" src="images/<%= sandwich.image %>" alt="<%= sandwich.name %>" />
@@ -91,3 +108,44 @@
 </section>
 
 <%- include ('partials/footer') %>
+
+<script>
+	var temp = <%- JSON.stringify(results) %>;
+	var movieList = temp.map(function(video) {
+  			return video.title;
+	});
+	
+	function changeFunc() {
+		movieList = [];
+		var select = document.getElementById("flavor");
+		var selectedValue = select.options[select.selectedIndex].value;
+		selectedValue = selectedValue.toLowerCase();
+		console.log(selectedValue);
+		temp.forEach(function(video) {
+			console.log(video.ingredients.selectedValue);
+			if(video.ingredients.chicken) {
+				document.getElementById(video._id).style.display = "block";
+				movieList.push(video.name);
+			}
+			else {
+				document.getElementById(video._id).style.display = "none";
+			}
+		})
+	}
+	
+	function keyUpFunc() {
+		input = document.getElementById('searchBar');
+  		filter = input.value.toUpperCase();
+		temp.forEach(function(video) {
+			
+			if(video.name.toUpperCase().indexOf(filter) > -1 && movieList.includes(video.title)) {
+				
+				document.getElementById(video._id).style.display = "block";
+				
+			}
+			else {
+				document.getElementById(video._id).style.display = "none";
+			}
+		})
+	}
+</script>
