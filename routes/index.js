@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
 router.get('/sandwiches', function(req, res) {
 	collection.find({}, function(err, sandwiches) {
 		if (err) throw err;
-		res.render('index', {results: sandwiches});
+		res.render('index', {results: sandwiches, user: req.user});
 	})
 });
 
