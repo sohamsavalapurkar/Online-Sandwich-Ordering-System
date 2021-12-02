@@ -67,12 +67,10 @@
 		</div>
 		<div class="col-md-3">
 			<select name="flavor" id="flavor" class="form-control" onchange="changeFunc();">
-				<option value=""></option>
+				<option value="">Flavor</option>
 				<option value="Chicken">Chicken</option>
 				<option value="Pork">Pork</option>
 				<option value="Turkey">Turkey</option>
-				<option value="Romantic">Romantic</option>
-				<option value="Drama">Drama</option>
 			</select>
 		</div>
 	</form>
@@ -111,40 +109,40 @@
 
 <script>
 	var temp = <%- JSON.stringify(results) %>;
-	var movieList = temp.map(function(video) {
-  			return video.title;
+	var sandwichList = temp.map(function(sandwich) {
+  			return sandwich.title;
 	});
 	
 	function changeFunc() {
-		movieList = [];
+		sandwichList = [];
 		var select = document.getElementById("flavor");
 		var selectedValue = select.options[select.selectedIndex].value;
 		selectedValue = selectedValue.toLowerCase();
-		console.log(selectedValue);
-		temp.forEach(function(video) {
-			console.log(video.ingredients.selectedValue);
-			if(video.ingredients.chicken) {
-				document.getElementById(video._id).style.display = "block";
-				movieList.push(video.name);
+		
+		temp.forEach(function(sandwich) {
+			
+			if(sandwich.ingredients.includes(selectedValue) || selectedValue == "") {
+				document.getElementById(sandwich._id).style.display = "block";
+				sandwichList.push(sandwich.name);
 			}
 			else {
-				document.getElementById(video._id).style.display = "none";
+				document.getElementById(sandwich._id).style.display = "none";
 			}
 		})
-	}
+		
+;	}
 	
 	function keyUpFunc() {
 		input = document.getElementById('searchBar');
   		filter = input.value.toUpperCase();
-		temp.forEach(function(video) {
+		temp.forEach(function(sandwich) {
 			
-			if(video.name.toUpperCase().indexOf(filter) > -1 && movieList.includes(video.title)) {
-				
-				document.getElementById(video._id).style.display = "block";
+			if(sandwich.name.toUpperCase().indexOf(filter) > -1 && sandwichList.includes(sandwich.name)) {
+				document.getElementById(sandwich._id).style.display = "block";
 				
 			}
 			else {
-				document.getElementById(video._id).style.display = "none";
+				document.getElementById(sandwich._id).style.display = "none";
 			}
 		})
 	}
