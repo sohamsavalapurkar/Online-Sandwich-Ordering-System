@@ -64,11 +64,20 @@
                 </div>
                 <p class="lead"><%= sandwich.description%></p>
                 <div class="d-flex">
-                    <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
+                    
+                    <% if(user && user.username == "admin@dreamsandwich.com") {%>
+                        <form action="/sandwich/<%= sandwich._id %>?_method=DELETE" method="POST">
+
+                            <button type="submit" class="btn btn-danger">Delete Sandwich</button>
+                            
+                            </form>
+                    <% } else {%>
+                        <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
                     <button class="btn btn-outline-dark flex-shrink-0" type="button">
                         <i class="bi-cart-fill me-1"></i>
                         Add to cart
                     </button>
+                    <% } %>
                     <div class="text-center "><a class="btn btn-outline-dark flex-shrink-0 mx-auto mt-auto" href="/sandwiches">Back</a></div>
                 </div>
             </div>

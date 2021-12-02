@@ -66,6 +66,17 @@ router.get('/sandwiches/:id', function(req, res) {
 	}
 	
 });
+router.delete('/sandwiches/:id', function(req, res) {
+	console.log("hello")
+	collection.update({_id : req.params.id},
+	{ $set: {
+		isDeleted: true
+	}}, function(err, sandwich) {
+		if (err) throw err;
+		//if update is successful it will return update video object
+    	res.redirect('/sandwiches');
+  	});
+});
 
 router.get('/signup', function(req, res) {
 	res.render('signup', {});
