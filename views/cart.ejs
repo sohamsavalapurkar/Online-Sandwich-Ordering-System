@@ -104,14 +104,19 @@
                 <div class="col-xl-4">
                     <div class="card border-0 bg-light mt-xl-5">
                         <div class="card-body p-4 py-lg-4">
+                        
                             <div class="d-flex align-items-center justify-content-center">
                                 <div class="text-left">
                                     <div class="h6 fw-bolder">Total Amount : $<%= total_cost %></div>
                                 </div>
                             </div>
-                            <div class="d-grid gap-2 mx-auto">
-                                  <button class="btn btn-warning" type="button">Checkout</button>
-                            </div>
+                            <form action="/checkout/<%= total_cost %>" method="POST">
+                                <div class="d-grid gap-2 mx-auto">
+                                    
+                                    <button class="btn btn-warning" type="submit">Checkout</button>
+                                
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

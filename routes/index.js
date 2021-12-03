@@ -8,7 +8,7 @@ var db = monk('localhost:27017/sandwiches');
 var collection = db.get('sandwiches');
 var accountDetails = db.get('accountDetails');
 var cart = db.get('cart');
-
+var orderedItems = db.get('orderedItems');
 /* GET home page. */
 router.get('/', function(req, res, next) {
 	if(req.user) {
@@ -145,7 +145,7 @@ router.get('/cart', function(req, res, next) {
 	
 });
 router.delete('/cart/:id', function(req, res) {
-	console.log("hello")
+	
 	cart.remove({_id : req.params.id}, function(err, video) {
 		if (err) throw err;
 			res.redirect('/cart');  
@@ -153,8 +153,34 @@ router.delete('/cart/:id', function(req, res) {
 	
 });
 
+router.post('/checkout/:total_cost', function(req, res) {
+	cart.find({username: req.user.username}, function(err, cartItems) {
+		orderedItems.find({username: req.user.username}, function(err, items) {
+
+		var order_number = items.length + 1;
+		for(var i=0; i< cartItems.length; i++) {
+			orderedItems.insert({
+				order_number: order_number,
+				username: req.user.username,
+				item_id: cartItems[i].item_id,
+				quantity: cartItems[i].quantity,
+				total_cost: req.params.total_cost
+			})
+		}
+			if (err) throw err;
+		
+		})
+	})
+	cart.remove({username : req.user.username}, function(err, video) {
+		if (err) throw err;
+			res.redirect('/');  
+		});
+	
+
+	})
+
 router.post('/sandwiches/addToCart/:id', function(req, res) {
-	console.log("hello")
+	
 	cart.insert({
 		username: req.user.username,
 		item_id: req.params.id,
