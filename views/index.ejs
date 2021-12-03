@@ -114,7 +114,7 @@
 <script>
 	var temp = <%- JSON.stringify(results) %>;
 	var sandwichList = temp.map(function(sandwich) {
-  			return sandwich.title;
+  			return sandwich.name;
 	});
 	
 	function changeFunc() {
