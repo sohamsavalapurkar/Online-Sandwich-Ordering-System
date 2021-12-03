@@ -122,6 +122,26 @@ router.post('/signup', function(req, res) {
 	
 });
 
+router.get('/cart', function(req, res, next) {
+	if(req.user) {
+		console.log(req.user.username);
+		accountDetails.find({username: req.user.username}, function(err, userDetails) {
+			if (err) throw error;
+			console.log(userDetails[0].name);
+			cart.find({username: req.user.username}, function(err, cartItems) {
+				if (err) throw err;
+				res.render('cart', {user: req.user, userDetails: userDetails[0], cartItems: cartItems});
+			})
+			
+		})
+	}
+	else {
+		res.render('cart', {user: req.user});
+	}
+	
+	
+});
+
 router.post('/sandwiches/addToCart/:id', function(req, res) {
 	console.log("hello")
 	cart.insert({

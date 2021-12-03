@@ -12,7 +12,7 @@
 					<li class="nav-item"><a class="nav-link active" href="/sandwiches">Shop</a></li>
 					<li class="nav-item"><a class="nav-link " href="/franchise">Franchise</a></li>
 				</ul>
-				<form class="d-flex">
+				<form class="d-flex" action="/cart" method="GET">
                     <button class="btn btn-outline-light" type="submit">
                         <i class="bi-cart-fill me-1"></i>
                         Cart
@@ -52,6 +52,85 @@
         </div>
     </nav>
 <%} %>
+<main class="flex-shrink-0">
+    <section class="py-5">
+        <div class="container px-5 my-5">
+            <div class="text-center mb-5">
+                <h1 class="fw-bolder">Your Shopping Cart</h1>
+                <p class="lead fw-normal text-muted mb-0">Add items to your cart</p>
+            </div>
+            <div class="row gx-5">
+                <div class="col-xl-8">
+                    <!-- FAQ Accordion 1-->
+                    <h2 class="fw-bolder mb-3">Items in your cart</h2>
+                    <div class="accordion mb-5" id="accordionExample">
+                        <div class="accordion-item">
+                            <h3 class="accordion-header" id="headingOne"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">World's Best Ham Sandwich</button></h3>
+                            <div class="accordion-collapse collapse show" id="collapseOne" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    
+                                    <div class="row">
+                                        <div class="col">
+                                            <strong>Ingredients</strong>
+                                            <ol>
+                                                <li>Pork</li>
+                                                <li>Lettuce</li>
+                                                <li>Mayo</li>
+                                            </ol>
+                                        </div>
+                                        <div class="col">
+                                            <strong>Quantity</strong>
+                                            <input type="text" id="pin" name="pin" maxlength="4" size="4">
+                                        </div>
+                                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                          <button class="btn btn-danger" type="button">Remove from Cart</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h3 class="accordion-header" id="headingTwo"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Accordion Item #2</button></h3>
+                            <div class="accordion-collapse collapse" id="collapseTwo" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <strong>This is the second item's accordion body.</strong>
+                                    It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the
+                                    <code>.accordion-body</code>
+                                    , though the transition does limit overflow.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h3 class="accordion-header" id="headingThree"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Accordion Item #3</button></h3>
+                            <div class="accordion-collapse collapse" id="collapseThree" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <strong>This is the third item's accordion body.</strong>
+                                    It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the
+                                    <code>.accordion-body</code>
+                                    , though the transition does limit overflow.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4">
+                    <div class="card border-0 bg-light mt-xl-5">
+                        <div class="card-body p-4 py-lg-4">
+                            <div class="d-flex align-items-center justify-content-center">
+                                <div class="text-left">
+                                    <div class="h6 fw-bolder">Total Amount : $0.00</div>
+                                </div>
+                            </div>
+                            <div class="d-grid gap-2 mx-auto">
+                                  <button class="btn btn-warning" type="button">Checkout</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
 
 
 <%- include ('partials/footer') %>
