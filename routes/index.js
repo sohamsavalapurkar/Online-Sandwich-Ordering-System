@@ -7,6 +7,7 @@ var monk = require('monk');
 var db = monk('localhost:27017/sandwiches');
 var collection = db.get('sandwiches');
 var accountDetails = db.get('accountDetails');
+var cart = db.get('cart');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -119,6 +120,17 @@ router.post('/signup', function(req, res) {
 	}
 	
 	
+});
+
+router.post('/sandwiches/addToCart/:id', function(req, res) {
+	console.log("hello")
+	cart.insert({
+		username: req.user.username,
+		item_id: req.params.id,
+		quantity: req.body.quantity
+	}, function(err, account) {
+			res.redirect('/');
+	})
 });
 
 router.get('/login', function(req, res) {
