@@ -129,8 +129,11 @@ router.get('/cart', function(req, res, next) {
 			if (err) throw error;
 			console.log(userDetails[0].name);
 			cart.find({username: req.user.username}, function(err, cartItems) {
-				if (err) throw err;
-				res.render('cart', {user: req.user, userDetails: userDetails[0], cartItems: cartItems});
+				collection.find({}, function(err, sandwiches) {
+					if (err) throw err;
+				res.render('cart', {user: req.user, userDetails: userDetails[0], cartItems: cartItems, sandwiches:sandwiches});
+				})
+				
 			})
 			
 		})
@@ -139,6 +142,14 @@ router.get('/cart', function(req, res, next) {
 		res.render('cart', {user: req.user});
 	}
 	
+	
+});
+router.delete('/cart/:id', function(req, res) {
+	console.log("hello")
+	cart.remove({_id : req.params.id}, function(err, video) {
+		if (err) throw err;
+			res.redirect('/cart');  
+		});
 	
 });
 
