@@ -105,6 +105,21 @@ router.post('/signup', function(req, res) {
 	});
   });  
   
+  router.get('/franchise', function(req, res, next) {
+	if(req.user) {
+		console.log(req.user.username);
+		accountDetails.find({username: req.user.username}, function(err, userDetails) {
+			if (err) throw error;
+			console.log(userDetails[0].name);
+			res.render('franchise', {user: req.user, userDetails: userDetails[0]});
+		})
+	}
+	else {
+		res.render('franchise', {user: req.user});
+	}
+	
+	
+});
 
 router.get('/login', function(req, res) {
     res.render('login');

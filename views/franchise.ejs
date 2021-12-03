@@ -1,0 +1,192 @@
+<%- include ('partials/header') %>
+<!-- Header-->
+<% if (user) { %>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container px-4 px-lg-5">
+			<a class="navbar-brand" href="/">Dream Sandwiches</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+					<li class="nav-item"><a class="nav-link " aria-current="page" href="/">Home</a></li>
+					<li class="nav-item"><a class="nav-link " href="/sandwiches">Shop</a></li>
+					<li class="nav-item"><a class="nav-link active" href="/franchise">Franchise</a></li>
+				</ul>
+				<form class="d-flex">
+                    <button class="btn btn-outline-light" type="submit">
+                        <i class="bi-cart-fill me-1"></i>
+                        Cart
+                        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                    </button>
+                </form>
+				
+                <div class="btn-group">
+                    <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-person-fill"></i> <%= userDetails.name %>
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                    </ul>
+                  </div>
+				
+			</div>
+		</div>
+	</nav>
+        
+<% } else { %>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<div class="container px-4 px-lg-5">
+		<a class="navbar-brand" href="/">Dream Sandwiches</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+				<li class="nav-item"><a class="nav-link " aria-current="page" href="/">Home</a></li>
+				<li class="nav-item"><a class="nav-link " href="/sandwiches">Shop</a></li>
+				<li class="nav-item"><a class="nav-link active" href="/franchise">Franchise</a></li>
+			</ul>
+			<form class="d-flex">
+				<div class="text-center"><a class="btn btn-outline-light mt-auto" href="/login">Login</a></div>
+			</form>
+			
+		</div>
+	</div>
+</nav>
+<%} %>
+<header class="py-5 bg-dark">
+    <div class="container px-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-xxl-6">
+                <div class="text-center my-5">
+                    <h1 class="fw-bolder mb-3 text-white">Buy A Franchise</h1>
+                    <p class="lead fw-normal text-muted mb-4">Take the first step on your journey to becoming an Owner/Operator.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- About section one-->
+    <section class="py-5 bg-light" id="scroll-target">
+        <div class="container px-5 my-5">
+            <div class="row gx-5 align-items-center">
+                <div class="col-lg-6"><img class="img-fluid rounded mb-5 mb-lg-0" src="images/franchise-1.jpeg" alt="Franchise 1" /></div>
+                <div class="col-lg-6">
+                    <h2 class="fw-bolder">Costs &amp; Requirements</h2>
+                    <p class="lead fw-normal text-muted mb-0">An initial down payment is required when you purchase a new restaurant (40% of the total cost) or an existing restaurant (25% of the total cost). The down payment must come from non-borrowed personal resources, which include cash on hand; securities, bonds, and debentures; vested profit sharing (net of taxes); and business or real estate equity, exclusive of your personal residence.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- About section two-->
+    <section class="py-5">
+        <div class="container px-5 my-5">
+            <div class="row gx-5 align-items-center">
+                <div class="col-lg-6 order-first order-lg-last"><img class="img-fluid rounded mb-5 mb-lg-0" src="images/franchise-2.jpeg" alt="Franchise 2" /></div>
+                <div class="col-lg-6">
+                    <h2 class="fw-bolder">Financing &amp; Service Fees</h2>
+                    <p class="lead fw-normal text-muted mb-0">We require that the buyer pay a minimum of 25% cash as a down payment toward the purchase of a restaurant. The remaining balance of the purchase price may be financed for a period of no more than seven years. While Dream’s does not offer financing, Dream's Owner/Operators enjoy the benefits of our established relationships with many national lending institutions. We believe our Owner/Operators enjoy the lowest lending rates in the industry. The service fee is a monthly fee based upon the restaurant’s sales performance (currently a service fee of 4.0% of monthly sales).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="flex-shrink-0">
+        <!-- Blog preview section-->
+    <section class="py-5">
+        <div class="container px-5 my-3">
+            <div class="row gx-5 justify-content-center">
+                <div class="col-lg-8 col-xl-6">
+                    <div class="text-center">
+                        <h2 class="fw-bolder">The word of mouth</h2>
+                        <p class="lead fw-normal text-muted mb-5">Check out these responses from our satisfied franchise owners.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row gx-5">
+                <div class="col-lg-4 mb-5">
+                    <div class="card h-100 shadow border-0">
+                        <div class="card-body p-4">
+                            <div class="badge bg-primary bg-gradient rounded-pill mb-2">News</div>
+                            <a class="text-decoration-none link-dark stretched-link" href="#!"><h5 class="card-title mb-3">Made me a fortune</h5></a>
+                            <p class="card-text mb-0">Owning a dream sandwich franchise was the best decision of my life. It always attacted customers which helped maintain a positive cash flow. </p>
+                        </div>
+                        <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
+                            <div class="d-flex align-items-end justify-content-between">
+                                <div class="d-flex align-items-center">
+                                    <div class="small">
+                                        <div class="fw-bold">Kelly Rowan</div>
+                                        <div class="text-muted">March 12, 2021</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-5">
+                    <div class="card h-100 shadow border-0">
+                        <div class="card-body p-4">
+                            <div class="badge bg-primary bg-gradient rounded-pill mb-2">Media</div>
+                            <a class="text-decoration-none link-dark stretched-link" href="#!"><h5 class="card-title mb-3">A Hassle-free experience</h5></a>
+                            <p class="card-text mb-0">People presume that owning a franchise is tough and requires a lot of boring paperwork. Not with Dream! Their experts guided me through every step of the process. Highly recommend it!</p>
+                        </div>
+                        <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
+                            <div class="d-flex align-items-end justify-content-between">
+                                <div class="d-flex align-items-center">
+                                    <div class="small">
+                                        <div class="fw-bold">Josiah Barclay</div>
+                                        <div class="text-muted">November 23, 2021</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-5">
+                    <div class="card h-100 shadow border-0">
+                        <div class="card-body p-4">
+                            <div class="badge bg-primary bg-gradient rounded-pill mb-2">News</div>
+                            <a class="text-decoration-none link-dark stretched-link" href="#!"><h5 class="card-title mb-3">Didn't need to worry about hiring staff!</h5></a>
+                            <p class="card-text mb-0">Since the brand itself is so renowned, people rushed to work at my store. Coupling that with competitive wages and outstanding employee benefits, hiring an entire team was never easier.</p>
+                        </div>
+                        <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
+                            <div class="d-flex align-items-end justify-content-between">
+                                <div class="d-flex align-items-center">
+                                    <div class="small">
+                                        <div class="fw-bold">Josh Martinez</div>
+                                        <div class="text-muted">June 15, 2020</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </main>
+
+    <!-- Team members section-->
+    <section class="py-3 bg-light">
+        <div class="container px-5 my-3">
+            <div class="text-center">
+                <h2 class="fw-bolder">Interested in owning a franchise?</h2>
+                <p class="lead fw-normal text-muted mb-5">Talk to our lead experts</p>
+            </div>
+            <div class="row gx-5 row-cols-1 row-cols-sm-2 row-cols-xl-4 justify-content-center">
+                <div class="col mb-5 mb-5 mb-xl-0">
+                    <div class="text-center">
+                        <img class="img-fluid rounded-circle mb-4 px-4" src="https://dummyimage.com/150x150/ced4da/6c757d" alt="..." />
+                        <h5 class="fw-bolder"><a href="https://www.linkedin.com/in/yashnadkarni/" style="text-decoration: none;">Yash Nadkarni</a></h5>
+                        <div class="fst-italic text-muted">Founder &amp; CEO</div>
+                    </div>
+                </div>
+                <div class="col mb-5 mb-5 mb-xl-0">
+                    <div class="text-center">
+                        <img class="img-fluid rounded-circle mb-4 px-4" src="https://dummyimage.com/150x150/ced4da/6c757d" alt="..." />
+                        <h5 class="fw-bolder"><a href="https://www.linkedin.com/in/soham-savalapurkar-28733619b/" style="text-decoration: none;">Soham Savalapurkar</a></h5>
+                        <div class="fst-italic text-muted">Founder &amp; COO</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<%- include ('partials/footer') %>
