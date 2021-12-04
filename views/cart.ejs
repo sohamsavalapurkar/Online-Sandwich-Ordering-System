@@ -92,7 +92,7 @@
                                         </div>
                                         <div class="col">
                                             <strong>Quantity</strong>
-                                            <input type="text" id="pin" value = "<%= cartItem.quantity%>" name="pin" maxlength="4" size="4">
+                                            <input type="text" id="pin" value = "<%= cartItem.quantity%>" name="quantity" maxlength="4" size="4">
                                         </div>
                                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                         <form action="/cart/<%= cartItem._id %>?_method=DELETE" method="POST">
