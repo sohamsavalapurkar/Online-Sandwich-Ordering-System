@@ -1,0 +1,89 @@
+<%- include ('partials/header') %>
+<!-- Header-->
+<% if (user) { %>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container px-4 px-lg-5">
+			<a class="navbar-brand" href="/">Dream Sandwiches</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+					<li class="nav-item"><a class="nav-link " aria-current="page" href="/">Home</a></li>
+					<li class="nav-item"><a class="nav-link active" href="/sandwiches">Shop</a></li>
+					<li class="nav-item"><a class="nav-link " href="/franchise">Franchise</a></li>
+				</ul>
+				<form class="d-flex" action="/orderHistory" method="GET">
+                    <button class="btn btn-outline-light" type="submit">
+                        Order History
+                    </button>
+                </form>
+                <form class="d-flex" action="/cart" method="GET">
+                    <button class="btn btn-outline-light" type="submit">
+                        <i class="bi-cart-fill me-1"></i>
+                        Cart
+                        
+                    </button>
+                </form>
+				
+                <div class="btn-group">
+                    <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-person-fill"></i> <%= userDetails.name %>
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                    </ul>
+                  </div>
+				
+			</div>
+		</div>
+	</nav>
+        
+<% } else { %>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="/">Dream Sandwiches</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link " aria-current="page" href="/">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/sandwiches">Shop</a></li>
+                    <li class="nav-item"><a class="nav-link " href="/franchise">Franchise</a></li>
+                </ul>
+                <form class="d-flex">
+                    <div class="text-center"><a class="btn btn-outline-light mt-auto" href="/login">Login</a></div>
+                </form>
+                
+            </div>
+        </div>
+    </nav>
+<%} %>
+<section class="py-5">
+    <div class="container px-5">
+        <!-- Contact form-->
+        <div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
+            <div class="text-center mb-5">
+                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-pencil-fill"></i></div>
+                <h1 class="fw-bolder">Edit Item</h1>
+            </div>
+            <div class="row gx-5 justify-content-center">
+                <div class="col-lg-8 col-xl-6">
+                    <p>Item Name</p>
+                    <input class="form-control mr-sm-2" placeholder="Insert name"><br>
+                    <p>Description</p>
+                    <input class="form-control mr-sm-2" placeholder="Add description"><br>
+                    <p>Price</p>
+                    <input class="form-control mr-sm-2" placeholder="Add price"><br>
+                    <p id="edit-current-image">Your current image is: </p>
+                    <p>Do you want to replace this image?</p>
+                    <input type="file" accept=".jpeg,.png,.jpg" class="form-control-file" id="exampleFormControlFile1"><br><br>
+                     <p>Ingredients</p>
+                    <input class="form-control mr-sm-2" placeholder="Add comma seperated values"><br>
+                    <!-- Submit Button-->
+                    <div class="d-grid"><button class="btn btn-primary btn-lg" id="submitButton" type="submit">Update Item</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>     
+
+<%- include ('partials/footer') %>
