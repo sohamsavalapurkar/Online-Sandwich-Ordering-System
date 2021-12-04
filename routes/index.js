@@ -96,6 +96,62 @@ router.post('/sandwiches/new', function(req, res) {
 });
 });
 
+router.get('/sandwiches/edit/:id', function(req, res, next) {
+	if(req.user) {
+		console.log(req.user.username);
+		accountDetails.find({username: req.user.username}, function(err, userDetails) {
+			if (err) throw err;
+			collection.findOne({_id : req.params.id}, function(err, sandwich) {
+				if (err) throw err;
+				
+			console.log(userDetails[0].name);
+			res.render('edit', {user: req.user, userDetails: userDetails[0], sandwich:sandwich});
+		});
+		})
+	}
+	else {
+		res.render('edit', {user: req.user});
+	}
+});
+
+router.put('/sandwiches/:id', function(req, res) {
+	upload(req, res, function(err) {
+		if (err) throw err;
+		
+	//console.log(req.file)
+	if(req.file != undefined) {
+		collection.update({_id : req.params.id},
+			{ $set: {
+				name : req.body.name,
+				description : req.body.description,
+				price : req.body.price,
+				image : req.file.path.split('/')[2],
+				ingredients : req.body.ingredients.split(','),
+				isDeleted : false
+			}}, function(err, video) {
+				if (err) throw err;
+				//if update is successful it will return update video object
+				res.redirect('/sandwiches');
+			  });
+	}
+	else {
+		collection.update({_id : req.params.id},
+			{ $set: {
+				name : req.body.name,
+				description : req.body.description,
+				price : req.body.price,
+				ingredients : req.body.ingredients.split(','),
+				isDeleted : false
+			}}, function(err, video) {
+				if (err) throw err;
+				//if update is successful it will return update video object
+				res.redirect('/sandwiches');
+			  });
+	}
+	
+});
+});
+
 router.get('/sandwiches/:id', function(req, res) {
 	if(req.user) {
 		console.log(req.user.username);

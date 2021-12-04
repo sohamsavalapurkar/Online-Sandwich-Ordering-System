@@ -24,6 +24,14 @@
                         
                     </button>
                 </form>
+				<% if(user.username == "admin@dreamsandwich.com") { %>
+					<form class="d-flex" action="/sandwiches/new" method="GET">
+						<button class="btn btn-outline-light" type="submit">
+							Add Sandwich
+							
+						</button>
+					</form>
+				<% } %>
 				
                 <div class="btn-group">
                     <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">

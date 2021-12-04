@@ -76,6 +76,11 @@
                             <button type="submit" class="btn btn-danger">Delete Sandwich</button>
                             
                             </form>
+                            <form action="/sandwiches/edit/<%= sandwich._id %>" method="GET">
+
+                                <button type="submit" class="btn btn-warning">Edit Sandwich</button>
+                                
+                                </form>
                     <% } else {
                         if(user) {%>
                         <form action="/sandwiches/addToCart/<%= sandwich._id %>" method="POST">
