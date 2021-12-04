@@ -17,6 +17,7 @@
                         Order History
                     </button>
                 </form>
+				&nbsp;
                 <form class="d-flex" action="/cart" method="GET">
                     <button class="btn btn-outline-light" type="submit">
                         <i class="bi-cart-fill me-1"></i>
@@ -25,6 +26,7 @@
                     </button>
                 </form>
 				<% if(user.username == "admin@dreamsandwich.com") { %>
+					&nbsp;
 					<form class="d-flex" action="/sandwiches/new" method="GET">
 						<button class="btn btn-outline-light" type="submit">
 							Add Sandwich
@@ -80,7 +82,7 @@
 		</div>
 		<div class="col-md-3">
 			<select name="flavor" id="flavor" class="form-control" onchange="changeFunc();">
-				<option value="">All</option>
+				<option value="">All Flavours</option>
 				<option value="Chicken">Chicken</option>
 				<option value="Pork">Pork</option>
 				<option value="Turkey">Turkey</option>
@@ -111,7 +113,7 @@
 						</div>
 						<!-- Product actions-->
 						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-							<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/sandwiches/<%= sandwich._id %>">View options</a></div>
+							<div class="text-center"><a class="btn btn-dark mt-auto" href="/sandwiches/<%= sandwich._id %>">View options</a></div>
 
 						</div>
 						
