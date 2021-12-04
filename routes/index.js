@@ -9,6 +9,18 @@ var collection = db.get('sandwiches');
 var accountDetails = db.get('accountDetails');
 var cart = db.get('cart');
 var orderedItems = db.get('orderedItems');
+
+var multer = require('multer');
+
+var Storage = multer.diskStorage({
+	destination: function(req, file, callback) {
+		callback(null, "./public/images");
+	},
+	filename: function(req, file, callback) {
+		callback(null, file.fieldname + "_" + Date.now() + "_" + file.originalname);
+	}
+});
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
 	if(req.user) {
@@ -47,6 +59,43 @@ router.get('/sandwiches', function(req, res) {
 	
 });
 
+router.get('/sandwiches/new', function(req, res, next) {
+	if(req.user) {
+		console.log(req.user.username);
+		accountDetails.find({username: req.user.username}, function(err, userDetails) {
+			if (err) throw err;
+			console.log(userDetails[0].name);
+			res.render('new', {user: req.user, userDetails: userDetails[0]});
+		})
+	}
+	else {
+		res.render('new', {user: req.user});
+	}
+});
+
+var upload = multer({
+	storage: Storage
+}).single("image");
+
+router.post('/sandwiches/new', function(req, res) {
+	upload(req, res, function(err) {
+		if (err) throw err;
+		
+	console.log(req.file)
+	collection.insert({
+		name : req.body.name,
+		description : req.body.description,
+		price : req.body.price,
+		image : req.file.path.split('/')[2],
+		ingredients : req.body.ingredients.split(','),
+		isDeleted : false
+	}, function(err, account) {
+
+			res.redirect('/sandwiches');
+	})
+});
+});
+
 router.get('/sandwiches/:id', function(req, res) {
 	if(req.user) {
 		console.log(req.user.username);
@@ -78,6 +127,7 @@ router.delete('/sandwiches/:id', function(req, res) {
     	res.redirect('/sandwiches');
   	});
 });
+
 
 router.get('/signup', function(req, res) {
 	res.render('signup', {});
@@ -218,6 +268,10 @@ router.get('/orderHistory', function(req, res, next) {
 	
 	
 });
+
+
+
+
 
 router.get('/login', function(req, res) {
     res.render('login');

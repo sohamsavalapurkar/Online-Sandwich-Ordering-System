@@ -67,18 +67,20 @@
             </div>
             <div class="row gx-5 justify-content-center">
                 <div class="col-lg-8 col-xl-6">
-                    <p>Item Name</p>
-                    <input class="form-control mr-sm-2" placeholder="Insert name"><br>
-                    <p>Description</p>
-                    <input class="form-control mr-sm-2" placeholder="Add description"><br>
-                    <p>Price</p>
-                    <input class="form-control mr-sm-2" placeholder="Add price"><br>
-                    <p>Add image</p>
-                    <input type="file" accept=".jpeg,.png,.jpg" class="form-control-file" id="exampleFormControlFile1"><br><br>
-                     <p>Ingredients</p>
-                    <input class="form-control mr-sm-2" placeholder="Add comma seperated values"><br>
-                    <!-- Submit Button-->
-                    <div class="d-grid"><button class="btn btn-primary btn-lg" id="submitButton" type="submit">Add Item</button></div>
+                    <form action="/sandwiches/new" method="POST" enctype="multipart/form-data">
+                        <p>Item Name</p>
+                        <input class="form-control mr-sm-2" name="name" placeholder="Insert name"><br>
+                        <p>Description</p>
+                        <input class="form-control mr-sm-2" name="description" placeholder="Add description"><br>
+                        <p>Price</p>
+                        <input class="form-control mr-sm-2" name="price" placeholder="Add price"><br>
+                        <p>Add image</p>
+                        <input type="file" accept=".jpeg,.png,.jpg" name="image" class="form-control-file" id="exampleFormControlFile1"><br><br>
+                        <p>Ingredients</p>
+                        <input class="form-control mr-sm-2" name="ingredients" placeholder="Add comma seperated values"><br>
+                        <!-- Submit Button-->
+                        <div class="d-grid"><button class="btn btn-primary btn-lg" id="submitButton" type="submit">Add Item</button></div>
+                    </form>
                 </div>
             </div>
         </div>

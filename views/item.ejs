@@ -76,14 +76,22 @@
                             <button type="submit" class="btn btn-danger">Delete Sandwich</button>
                             
                             </form>
-                    <% } else {%>
+                    <% } else {
+                        if(user) {%>
                         <form action="/sandwiches/addToCart/<%= sandwich._id %>" method="POST">
                             <input class="form-control text-center me-3" id="quantity" name="quantity" type="num" value="1" style="max-width: 3rem" />
                             <button class="btn btn-outline-dark flex-shrink-0" type="submit">
                                 <i class="bi-cart-fill me-1"></i>Add to cart
                             </button>
                         </form>
-                    <% } %>
+                    <% } else {%>
+                        <form action="/login%>" method="GET">
+                            <input class="form-control text-center me-3" id="quantity" name="quantity" type="num" value="1" style="max-width: 3rem" />
+                            <button class="btn btn-outline-dark flex-shrink-0" type="submit">
+                                <i class="bi-cart-fill me-1"></i>Add to cart
+                            </button>
+                        </form>
+                    <% }} %>    
                     <div class="text-center "><a class="btn btn-outline-dark flex-shrink-0 mx-auto mt-auto" href="/sandwiches">Back</a></div>
                 </div>
             </div>
