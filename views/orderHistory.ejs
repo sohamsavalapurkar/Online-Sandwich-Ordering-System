@@ -1,0 +1,109 @@
+<%- include ('partials/header') %>
+<!-- Header-->
+<% if (user) { %>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container px-4 px-lg-5">
+			<a class="navbar-brand" href="/">Dream Sandwiches</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+					<li class="nav-item"><a class="nav-link " aria-current="page" href="/">Home</a></li>
+					<li class="nav-item"><a class="nav-link active" href="/sandwiches">Shop</a></li>
+					<li class="nav-item"><a class="nav-link " href="/franchise">Franchise</a></li>
+				</ul>
+				<form class="d-flex" action="/orderHistory" method="GET">
+                    <button class="btn btn-outline-light" type="submit">
+                        Order History
+                    </button>
+                </form>
+                <form class="d-flex" action="/cart" method="GET">
+                    <button class="btn btn-outline-light" type="submit">
+                        <i class="bi-cart-fill me-1"></i>
+                        Cart
+                        
+                    </button>
+                </form>
+				
+                <div class="btn-group">
+                    <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-person-fill"></i> <%= userDetails.name %>
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                    </ul>
+                  </div>
+				
+			</div>
+		</div>
+	</nav>
+        
+<% }  %>
+   
+<main class="flex-shrink-0">
+    <section class="py-5">
+        <div class="container px-5 my-5">
+            <div class="text-center mb-5">
+                <h1 class="fw-bolder">Your Order History</h1>
+                <p class="lead fw-normal text-muted mb-0">Add items to your cart</p>
+            </div>
+            <div class="row gx-5">
+                <div class="col-xl-8">
+                    <!-- FAQ Accordion 1-->
+                    <h2 class="fw-bolder mb-3">Items in your cart</h2>
+                    <div class="accordion mb-5" id="accordionExample">
+                        <% var i = 0, j=1;
+                            
+                            while(i < orderItems.length) { 
+                                
+                               %>
+                                
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="headingOne"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">Order <%= j %></button></h3>
+                                    <div class="accordion-collapse collapse show" id="collapseOne" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            
+                                            
+                                            <% 
+                                            var order_number = orderItems[i].order_number;
+                                            if(order_number != orderItems[i].order_number) {
+                                                console.log("Hello");
+
+                                                console.log(order_number)
+                                            }
+                                            while(i < orderItems.length && order_number == orderItems[i].order_number ) { 
+                                                console.log(orderItems[i].item);
+                                                %>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <p>Item: <%= orderItems[i].item%></p>
+                                                    <p>Quantity: <%= orderItems[i].quantity %></p>
+                                                    
+                                                </div>
+                                            </div>
+                                                <% i++; 
+                                                console.log(i);
+                                                }
+                                                console.log(orderItems[i-1].total_cost);
+                                                %>
+                                            <h6>Total Cost: $<%=orderItems[i-1].total_cost%></h6> 
+                                                
+                                                
+                                                
+                                        
+                                        </div>
+                                    </div>
+                                </div>
+                          <%j++;}
+                            %>
+                        
+                        
+                       
+                
+            </div>
+        </div>
+    </section>
+</main>
+
+
+<%- include ('partials/footer') %>

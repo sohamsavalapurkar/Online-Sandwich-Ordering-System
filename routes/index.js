@@ -156,16 +156,22 @@ router.delete('/cart/:id', function(req, res) {
 router.post('/checkout/:total_cost', function(req, res) {
 	cart.find({username: req.user.username}, function(err, cartItems) {
 		orderedItems.find({username: req.user.username}, function(err, items) {
-
+			
 		var order_number = items.length + 1;
 		for(var i=0; i< cartItems.length; i++) {
+			var quantity = cartItems[i].quantity
+			collection.findOne({_id: cartItems[i].item_id}, function(err, sandwich) {
+				if (err) throw err;
+			
+			
 			orderedItems.insert({
 				order_number: order_number,
 				username: req.user.username,
-				item_id: cartItems[i].item_id,
-				quantity: cartItems[i].quantity,
+				item: sandwich.name,
+				quantity: quantity,
 				total_cost: req.params.total_cost
 			})
+		})
 		}
 			if (err) throw err;
 		
@@ -186,8 +192,31 @@ router.post('/sandwiches/addToCart/:id', function(req, res) {
 		item_id: req.params.id,
 		quantity: req.body.quantity
 	}, function(err, account) {
-			res.redirect('/');
+			res.redirect('/sandwiches');
 	})
+});
+
+router.get('/orderHistory', function(req, res, next) {
+	if(req.user) {
+		
+		accountDetails.find({username: req.user.username}, function(err, userDetails) {
+			if (err) throw error;
+			console.log(userDetails[0].name);
+			orderedItems.find({username: req.user.username}, {$sort: {order_number: 1}}, function(err, orderItems) {
+					console.log(orderItems)
+					if (err) throw err;
+				res.render('orderHistory', {user: req.user, userDetails: userDetails[0], orderItems: orderItems});
+				
+				
+			})
+			
+		})
+	}
+	else {
+		res.render('cart', {user: req.user});
+	}
+	
+	
 });
 
 router.get('/login', function(req, res) {
