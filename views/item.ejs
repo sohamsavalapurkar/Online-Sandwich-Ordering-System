@@ -16,6 +16,7 @@
                         Order History
                     </button>
                 </form>
+                &nbsp;
                 <form class="d-flex" action="/cart" method="GET">
                     <button class="btn btn-outline-light" type="submit">
                         <i class="bi-cart-fill me-1"></i>
@@ -72,33 +73,40 @@
                     
                     <% if(user && user.username == "admin@dreamsandwich.com") {%>
                         <form action="/sandwiches/<%= sandwich._id %>?_method=DELETE" method="POST">
-
                             <button type="submit" class="btn btn-danger">Delete Sandwich</button>
-                            
-                            </form>
-                            <form action="/sandwiches/edit/<%= sandwich._id %>" method="GET">
-
-                                <button type="submit" class="btn btn-warning">Edit Sandwich</button>
-                                
-                                </form>
+                        </form>
+                        &nbsp;
+                        <form action="/sandwiches/edit/<%= sandwich._id %>" method="GET">
+                            <button type="submit" class="btn btn-warning">Edit Sandwich</button>
+                        </form>
+                        <br>
                     <% } else {
                         if(user) {%>
                         <form action="/sandwiches/addToCart/<%= sandwich._id %>" method="POST">
-                            <input class="form-control text-center me-3" id="quantity" name="quantity" type="num" value="1" style="max-width: 3rem" />
-                            <button class="btn btn-outline-dark flex-shrink-0" type="submit">
-                                <i class="bi-cart-fill me-1"></i>Add to cart
-                            </button>
+                            
+                            <div class="row">
+                                <div class="col"><input class="form-control text-center me-3" id="quantity" name="quantity" type="num" value="1" style="max-width: 3rem" /></div>
+                                <p> </p>
+                                <button class="btn btn-warning flex-shrink-0 margin-top" type="submit">
+                                    <i class="bi-cart-fill me-1"></i>Add to cart
+                                    </button>
+                            </div>
                         </form>
                     <% } else {%>
                         <form action="/login%>" method="GET">
-                            <input class="form-control text-center me-3" id="quantity" name="quantity" type="num" value="1" style="max-width: 3rem" />
-                            <button class="btn btn-outline-dark flex-shrink-0" type="submit">
-                                <i class="bi-cart-fill me-1"></i>Add to cart
-                            </button>
+                            <div class="row">
+                                <p><strong>Login to add to cart</strong></p>
+                                <button class="btn btn-warning flex-shrink-0 margin-top" type="submit" disabled>
+                                    <i class="bi-cart-fill me-1"></i>Add to cart
+                                </button>
+                            </div>
+                            <br>
                         </form>
-                    <% }} %>    
-                    <div class="text-center "><a class="btn btn-outline-dark flex-shrink-0 mx-auto mt-auto" href="/sandwiches">Back</a></div>
+                    <% }} %>  
+                    &nbsp;
+                    
                 </div>
+                <div><a class="btn btn-outline-dark flex-shrink-0 mx-auto mt-auto" href="/sandwiches">Back</a></div>
             </div>
         </div>
     </div>
