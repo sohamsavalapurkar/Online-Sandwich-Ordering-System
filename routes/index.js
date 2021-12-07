@@ -38,6 +38,27 @@ router.get('/', function(req, res, next) {
 	
 });
 
+router.get('/index2', function(req, res) {
+	if(req.user) {
+		console.log(req.user.username);
+		accountDetails.find({username: req.user.username}, function(err, userDetails) {
+			if (err) throw error;
+			console.log(userDetails[0].name);
+			collection.find({}, function(err, sandwiches) {
+				if (err) throw err;
+				res.render('index1', {results: sandwiches, user: req.user, userDetails: userDetails[0]});
+			})
+		})
+	}
+	else {
+		collection.find({}, function(err, sandwiches) {
+			if (err) throw err;
+			res.render('index1', {results: sandwiches, user: req.user});
+		})
+	}
+	
+});
+
 router.get('/sandwiches', function(req, res) {
 	if(req.user) {
 		console.log(req.user.username);

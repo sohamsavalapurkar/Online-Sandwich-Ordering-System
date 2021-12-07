@@ -34,30 +34,30 @@
                     <!-- To make this form functional, sign up at-->
                     <!-- https://startbootstrap.com/solution/contact-forms-->
                     <!-- to get an API token!-->
-                    <form id="contactForm" role="form" action="/signup" method="POST">
+                    <form id="contactForm" role="form" action="/signup" method="POST" data-sb-form-api-token="fda8fdf2-96f1-4f98-ac42-619cd0f7d646">
                         <!-- Name input-->
                         <div class="form-floating mb-3">
                             <input class="form-control" id="name" name="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
                             <label for="name">Full name</label>
-                            <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                            <div class="invalid-feedback is-invalid" data-sb-feedback="name:required">A name is required.</div>
                         </div>
                         <!-- Email address input-->
                         <div class="form-floating mb-3">
                             <input class="form-control" id="email" name="email" type="email" placeholder="name@example.com" data-sb-validations="required,email" />
                             <label for="email">Email address</label>
-                            <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
-                            <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
+                            <div class="invalid-feedback is-invalid" data-sb-feedback="email:required">An email is required.</div>
+                            <div class="invalid-feedback is-invalid" data-sb-feedback="email:email">Email is not valid.</div>
                         </div>
                         <div class="form-floating mb-3">
                             <input class="form-control" id="password" name="password" type="password"  placeholder="Password" data-sb-validations="required" />
                             <label for="password">Password</label>
-                            <div class="invalid-feedback" data-sb-feedback="password:required">A password number is required.</div>
+                            <div class="invalid-feedback is-invalid" data-sb-feedback="password:required">A password is required.</div>
                         </div>
                         <!-- Phone number input-->
                         <div class="form-floating mb-3">
                             <input class="form-control" id="phone" name="phone" type="tel" placeholder="(123) 456-7890" data-sb-validations="required" />
                             <label for="phone">Phone number</label>
-                            <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
+                            <div class="invalid-feedback is-invalid" data-sb-feedback="phone:required">A phone number is required.</div>
                         </div>
                        
                         <div class="d-none" id="submitSuccessMessage">
@@ -81,5 +81,11 @@
         </div>
     </div>
 </section>     
+
+<script>
+    function signup() {
+
+    }
+</script>
 
 <%- include ('partials/footer') %>

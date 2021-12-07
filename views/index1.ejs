@@ -95,10 +95,10 @@
 <<section class="py-5">
 	<div class="container px-4 px-lg-5 mt-5">
 		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-			
-			<% var cnt=0 
+			<% var cnt = 0; 
 			results.forEach(function(sandwich){ 
-				if(!sandwich.isDeleted && cnt < 8){%>
+				if(!sandwich.isDeleted && cnt > 7){
+					console.log(sandwich.name)%>
 				<div class="col mb-5" id="<%= sandwich._id %>">
 					<div class="card h-100">
 						<!-- Product image-->
@@ -119,12 +119,11 @@
 						
 					</div>
 				</div>
-			<% cnt++;
-		}}); %>
-			
+			<% 
+		}cnt++;}); %>
 		</div>
 	</div>
-	<div class="text-center"><a class="btn btn-dark mt-auto" href="/index2">Next Page</a></div>
+	<div class="text-center"><a class="btn btn-dark mt-auto" href="/sandwiches">Prev Page</a></div>
 </section>
 
 <%- include ('partials/footer') %>
